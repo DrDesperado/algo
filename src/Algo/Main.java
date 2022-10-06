@@ -5,6 +5,7 @@ import Algo.InsertSort;
 import Algo.MergeSort;
 import Algo.QuickSort;
 import Algo.SelectionSort;
+import Algo.HeapSort;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -42,7 +43,7 @@ public class Main {
 		
 		elements(nums);
 		minimal(nums);
-		Algo.SelectionSort.selectionsort(nums);
+		Algo.HeapSort.heapsort(nums);
 		elements(nums);
 		
 	}
