@@ -1,59 +1,48 @@
 package Algo;
 
-import Algo.Massive;
-import java.util.Scanner;
-
-public class QuickSort extends Algo.Massive{
-	public QuickSort(int num) {
-		super(num);
-	}
+public class QuickSort {
 	
-	public static void sort(QuickSort arr, int low,int high) {
+	public static void quicksort(int[] arr) {
+		int low = 0;
+		int high = arr.length - 1;
+		sort(arr, low, high);
+	}
+
+	private static void sort(int[] array, int low, int high) {
 		if (low > high) {
 			return;
 		}
 		int left = low;
 		int right = high;
 		int middle = (left + right)/2;
-		int base = arr.nums[middle];
 		
 		while (low <= high) {
-			if (arr.nums[low] <= base) {
+			if (array[low] <= array[middle]) {
+				if (low > middle) {
+					int temp = array[low];
+					array[low] = array[middle];
+					array[middle] = temp;
+					middle = low;
+				}
 				low++;
-			} else if (arr.nums[high] >= base) {
+			} else if (array[high] >= array[middle]) {
+				if (high < middle) {
+					int temp = array[high];
+					array[high] = array[middle];
+					array[middle] = temp;
+					middle = high;
+				}
 				high--;
 			} else {
-				int temp = arr.nums[low];
-				arr.nums[low] = arr.nums[high];
-				arr.nums[high] = temp;
+				int temp = array[low];
+				array[low] = array[high];
+				array[high] = temp;
 			low++;
 			high--;
-
-			if (high < middle) {
-				int temp_1 = arr.nums[low];
-				arr.nums[low] = arr.nums[middle];
-				arr.nums[middle] = temp;
-				middle = high;
-			} else if (low > middle) {
-				int temp_2 = arr.nums[low];
-				arr.nums[low] = arr.nums[middle];
-				arr.nums[middle] = temp;
-				middle = low;
-			}
 			}
 		}
-		sort(arr, left, middle);
-		sort(arr, middle + 1, right);
-	}
-	
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int n = scanner.nextInt();
-		QuickSort m = new QuickSort(n);
-		m.elements();
-		sort(m, 0, m.length-1);
-		m.elements();
-		
+		sort(array, left, middle-1);
+		sort(array, middle + 1, right);
 	}
 }
 
