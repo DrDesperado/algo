@@ -2,6 +2,7 @@ package Algo;
 
 import Algo.BubbleSort;
 import Algo.InsertSort;
+import Algo.MergeSort;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -39,7 +40,7 @@ public class Main {
 		
 		elements(nums);
 		minimal(nums);
-		Algo.InsertSort.insertsort(nums);
+		Algo.MergeSort.mergesort(nums);
 		elements(nums);
 		
 	}

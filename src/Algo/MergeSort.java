@@ -1,40 +1,49 @@
 package Algo;
 
-import Algo.Massive;
-import java.util.Scanner;
-
-public class MergeSort extends Algo.Massive{
-	public MergeSort(int num) {
-		super(num);
+public class MergeSort {
+	
+	public static void mergesort(int[] array) {
+		if (array.length < 2) {
+				return;
+			}
+			
+			int middle = array.length / 2 ;
+			int[] left = new int[middle];
+			int[] right = new int[array.length - middle];
+			
+			for (int i = 0; i < middle; i++) {
+				left[i] = array[i];
+			}
+			
+			for (int i = 0; i < array.length - middle; i++) {
+				right[i] = array[i + middle];
+			}
+			
+			mergesort(left);
+			mergesort(right);
+			merge(array, left, right);
 	}
 	
-	public static void mergeList(int[] a, int[] b) {
-		int[] c = new int[a.length + b.length];
+	public static void merge (int[] array, int[] left, int[] right) {
 		int i = 0;
 		int j = 0;
-		int index = -1;
+		int ind = 0;
 		
-		while (i < a.length && j < b.length) {
-			if ( a[i] <= b[j] ) {
-				index++;
-				c[index] = a[i];
-				i++;
+		while (i < left.length && j < right.length) {
+			if (left[i] < right[j]) {
+				array[ind++] = left[i++];
 			} else {
-				index++;
-				c[index] = b[j];
-				j++;
+				array[ind++] = right[j++];
 			}
 		}
-		for (int ind = 0; ind <  c.length; ind++) {
-			System.out.println(c[ind]);
+		
+		for (int left_index = i; left_index < left.length; left_index++) {
+			array[ind++] = left[left_index];
+		}
+		
+		for (int right_index = j; right_index < right.length; right_index++) {
+			array[ind++] = right[right_index];
 		}
 	}
-	
-	
-	public static void main(String[] args) {
-		int[] a = {6, 24, 67, 25, 678};
-		int[] b = {54, 1, 10};
-		mergeList(a, b);
-		
-	}
 }
+ 
