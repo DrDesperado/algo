@@ -1,15 +1,19 @@
 package DataStr;
 
-import DataStr.LinkedList;
+import DataStr.Queue;
 
 public class Main {
 	public static void main(String[] args) {
-		LinkedList list = new LinkedList();
-		list.insert(17);
-		list.insert(34);
-		list.insert(34);
+		Queue list = new Queue();
+		list.push(17);
+		list.push(34);
+		list.push(28);
 		list.show();
-		list.delete(35);
+		list.pop();
+		list.show();
+		list.pop();
+		list.show();
+		list.pop();
 		list.show();
 		
 	}
